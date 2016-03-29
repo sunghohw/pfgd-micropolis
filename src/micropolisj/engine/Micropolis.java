@@ -121,6 +121,7 @@ public class Micropolis
 	int policeCount;
 	int fireStationCount;
 	int stadiumCount;
+	int amusementparkCount;
 	int coalCount;
 	int nuclearCount;
 	int seaportCount;
@@ -534,6 +535,7 @@ public class Micropolis
 		policeCount = 0;
 		fireStationCount = 0;
 		stadiumCount = 0;
+		amusementparkCount = 0;
 		coalCount = 0;
 		nuclearCount = 0;
 		seaportCount = 0;
@@ -1448,7 +1450,7 @@ public class Micropolis
 	{
 		HashMap<String,TileBehavior> bb;
 		bb = new HashMap<String,TileBehavior>();
-
+		
 		bb.put("FIRE", new TerrainBehavior(this, TerrainBehavior.B.FIRE));
 		bb.put("FLOOD", new TerrainBehavior(this, TerrainBehavior.B.FLOOD));
 		bb.put("RADIOACTIVE", new TerrainBehavior(this, TerrainBehavior.B.RADIOACTIVE));
@@ -1465,6 +1467,9 @@ public class Micropolis
 		bb.put("POLICESTATION", new MapScanner(this, MapScanner.B.POLICESTATION));
 		bb.put("STADIUM_EMPTY", new MapScanner(this, MapScanner.B.STADIUM_EMPTY));
 		bb.put("STADIUM_FULL", new MapScanner(this, MapScanner.B.STADIUM_FULL));
+		System.out.println("@@@@@ tile behavior st");
+		bb.put("AMUSEMENTPARK", new MapScanner(this, MapScanner.B.AMUSEMENTPARK));
+		System.out.println("@@@@@ tile behavior ed");
 		bb.put("AIRPORT", new MapScanner(this, MapScanner.B.AIRPORT));
 		bb.put("SEAPORT", new MapScanner(this, MapScanner.B.SEAPORT));
 
@@ -1489,7 +1494,8 @@ public class Micropolis
 		if (behaviorStr == null) {
 			return; //nothing to do
 		}
-
+		System.out.println("@@@@@mapScanTile");
+		System.out.println(behaviorStr);
 		TileBehavior b = tileBehaviors.get(behaviorStr);
 		if (b != null) {
 			b.processTile(xpos, ypos);
@@ -2557,6 +2563,12 @@ public class Micropolis
 			resCap = (resPop > 500 && stadiumCount == 0);
 			if (resCap) {
 				sendMessage(MicropolisMessage.NEED_STADIUM);
+			}
+			break;
+		case 27:
+			resCap = (resPop > 1500 &&  amusementparkCount == 0);
+			if (resCap) {
+				sendMessage(MicropolisMessage.NEED_AMUSEMENTPARK);
 			}
 			break;
 		case 28:

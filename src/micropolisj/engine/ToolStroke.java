@@ -28,18 +28,21 @@ public class ToolStroke
 		this.ypos = ypos;
 		this.xdest = xpos;
 		this.ydest = ypos;
+		System.out.println("toolStroke");
 	}
 
 	public final ToolPreview getPreview()
 	{
 		ToolEffect eff = new ToolEffect(city);
 		inPreview = true;
+		System.out.println("getPreview 1");
 		try {
 			applyArea(eff);
 		}
 		finally {
 			inPreview = false;
 		}
+		System.out.println("getPreview 2");
 		return eff.preview;
 	}
 
@@ -53,16 +56,20 @@ public class ToolStroke
 	protected void applyArea(ToolEffectIfc eff)
 	{
 		CityRect r = getBounds();
-
+		System.out.println("apply Area");
+		System.out.format("%d%n", tool.getWidth());
 		for (int i = 0; i < r.height; i += tool.getHeight()) {
 			for (int j = 0; j < r.width; j += tool.getWidth()) {
+				System.out.format("%d,%d,%d,%d%n",i,j,r.x,r.y);
 				apply1(new TranslatedToolEffect(eff, r.x+j, r.y+i));
 			}
 		}
+		System.out.println("applied Area");
 	}
 
 	boolean apply1(ToolEffectIfc eff)
 	{
+		System.out.println("apply1");
 		switch (tool)
 		{
 		case PARK:
@@ -79,6 +86,7 @@ public class ToolStroke
 
 		default:
 			// not expected
+			System.out.println("tunexpected tool");
 			throw new Error("unexpected tool: "+tool);
 		}
 	}

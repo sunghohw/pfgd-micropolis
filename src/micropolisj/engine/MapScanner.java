@@ -40,6 +40,7 @@ class MapScanner extends TileBehavior
 		POLICESTATION,
 		STADIUM_EMPTY,
 		STADIUM_FULL,
+		AMUSEMENTPARK,
 		AIRPORT,
 		SEAPORT;
 	}
@@ -78,6 +79,8 @@ class MapScanner extends TileBehavior
 		case STADIUM_FULL:
 			doStadiumFull();
 			return;
+		case AMUSEMENTPARK:
+			doAmusementpark();
 		case AIRPORT:
 			doAirport();
 			return;
@@ -279,6 +282,16 @@ class MapScanner extends TileBehavior
 		}
 	}
 
+	void doAmusementpark()
+	{
+		boolean powerOn = checkZonePower();
+		city.amusementparkCount++;
+		zonePlop(AMUSEMENTPARK);
+		if ((city.cityTime % 8) == 0) {
+			repairZone(AMUSEMENTPARK, 4);
+			
+		}
+	}
 	void doAirport()
 	{
 		boolean powerOn = checkZonePower();

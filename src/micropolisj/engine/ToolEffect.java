@@ -37,7 +37,6 @@ class ToolEffect implements ToolEffectIfc
 		if (c != CLEAR) {
 			return c;
 		}
-
 		if (city.testBounds(originX + dx, originY + dy)) {
 			return city.getTile(originX + dx, originY + dy);
 		}

@@ -944,6 +944,8 @@ public class MainWindow extends JFrame
 
 	private JToggleButton makeToolBtn(final MicropolisTool tool)
 	{
+		String name = tool.name();
+		Boolean contains = strings.containsKey("tool."+tool.name()+".icon");
 		String iconName = strings.containsKey("tool."+tool.name()+".icon") ?
 			strings.getString("tool."+tool.name()+".icon") :
 			"/graphics/tools/"+tool.name().toLowerCase()+".png";
@@ -1046,7 +1048,8 @@ public class MainWindow extends JFrame
 		gridBox.add(b6,c);
 
 		b6.add(makeToolBtn(MicropolisTool.AIRPORT));
-
+		b6.add(makeToolBtn(MicropolisTool.AMUSEMENTPARK));
+		
 		// add glue to make all elements align toward top
 		c.gridy++;
 		c.weighty = 1.0;
@@ -1172,16 +1175,18 @@ public class MainWindow extends JFrame
 		CityLocation loc = drawingArea.getCityLocation(ev.getX(), ev.getY());
 		int x = loc.x;
 		int y = loc.y;
-
+		System.out.println("tool down1");
 		if (currentTool == MicropolisTool.QUERY) {
+			System.out.println("tool down2");
 			doQueryTool(x, y);
 			this.toolStroke = null;
 		}
 		else {
+			System.out.println("tool down3");
 			this.toolStroke = currentTool.beginStroke(engine, x, y);
 			previewTool();
 		}
-
+		System.out.println("tool down4");
 		this.lastX = x;
 		this.lastY = y;
 	}
@@ -1224,14 +1229,16 @@ public class MainWindow extends JFrame
 	{
 		assert this.toolStroke != null;
 		assert this.currentTool != null;
-
+		System.out.println("previewTool");
 		drawingArea.setToolCursor(
 			toolStroke.getBounds(),
 			currentTool
 			);
+		System.out.println("previewTool2");
 		drawingArea.setToolPreview(
 			toolStroke.getPreview()
 			);
+		System.out.println("previewTool3");
 	}
 
 	private void onToolDrag(MouseEvent ev)

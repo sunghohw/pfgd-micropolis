@@ -909,23 +909,24 @@
 865   misc_animation@0,608                      (bulldozable)(noburn)(description=#3)(becomes=866) (behavior=EXPLOSION)
 866   misc_animation@0,624                      (bulldozable)(noburn)(description=#3)(becomes=867) (behavior=EXPLOSION)
 867   misc_animation@0,640                      (bulldozable)(noburn)(description=#3)              (behavior=EXPLOSION)
-# not used
-868   misc_animation@0,656
-869   misc_animation@0,672
-870   misc_animation@0,688
-871   misc_animation@0,704
-872   misc_animation@0,720
-873   misc_animation@0,736
-874   misc_animation@0,752
-875   misc_animation@0,768
-876   misc_animation@0,784
-877   misc_animation@0,800
-878   misc_animation@0,816
-879   misc_animation@0,832
-880   misc_animation@0,848
-881   misc_animation@0,864
-882   misc_animation@0,880
-883   misc_animation@0,896
+
+# not used ( =>amusementpark)
+868   amusement@0,0            (conducts)
+869   amusement@16,0           (conducts)
+870   amusement@32,0           (conducts)
+871   amusement@48,0           (conducts)
+872   amusement@0,16           (conducts)
+873   amusement@16,16    (zone)(conducts)(building=4x4)(behavior=AMUSEMENTPARK)(description=#18)
+874   amusement@32,16          (conducts)
+875   amusement@48,16          (conducts)
+876   amusement@0,32           (conducts)
+877   amusement@16,32          (conducts)
+878   amusement@32,32          (conducts)
+879   amusement@48,32          (conducts)
+880   amusement@0,48           (conducts)
+881   amusement@16,48          (conducts)
+882   amusement@32,48          (conducts)
+883   amusement@48,48          (conducts)
 # BEGIN SMOKE STACKS #
 884   ind_zones@32,144|ind03_smoke_frames@32,0   (conducts)(building-part=643,1,-1)(becomes=885)(onshutdown=641)
 885   ind_zones@32,144|ind03_smoke_frames@80,0   (conducts)(building-part=643,1,-1)(becomes=886)(onshutdown=641)
