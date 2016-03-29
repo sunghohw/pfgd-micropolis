@@ -916,7 +916,7 @@
 870   amusement@32,0           (conducts)
 871   amusement@48,0           (conducts)
 872   amusement@0,16           (conducts)
-873   amusement@16,16    (zone)(conducts)(building=4x4)(behavior=AMUSEMENTPARK)(description=#18)
+873   amusement@16,16    (zone)(conducts)(building=4x4)(behavior=AMUSEMENTPARK)(description=#23)
 874   amusement@32,16          (conducts)
 875   amusement@48,16          (conducts)
 876   amusement@0,32           (conducts)

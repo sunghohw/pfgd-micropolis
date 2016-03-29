@@ -81,6 +81,7 @@ class MapScanner extends TileBehavior
 			return;
 		case AMUSEMENTPARK:
 			doAmusementpark();
+			return;
 		case AIRPORT:
 			doAirport();
 			return;
