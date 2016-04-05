@@ -187,6 +187,9 @@ public class Micropolis
 	int floodX;
 	int floodY;
 
+	int amuseX;
+	int amuseY;
+	
 	public int cityTime;  //counts "weeks" (actually, 1/48'ths years)
 	int scycle; //same as cityTime, except mod 1024
 	int fcycle; //counts simulation steps (mod 1024)
@@ -912,9 +915,18 @@ public class Micropolis
 			makeTornado();
 			break;
 		case 6:
-			makeEarthquake();
+			// if there is amusement park, chance of earthquake decreases significantly.
+			if (amusementparkCount > 0){
+				if(PRNG.nextInt(7) == 0){
+					makeEarthquake();	
+				}
+			}
+			else{
+				
+			}
 			break;
 		case 7:
+			makeFacilityacc();
 		case 8:
 			if (pollutionAverage > 60) {
 				makeMonster();
@@ -1093,7 +1105,7 @@ public class Micropolis
 		// by random chance. why is there no cap
 		// the rest of the time?
 
-		if (z > 240 && PRNG.nextInt(6) == 0)
+		if (z > 240) // if (z > 240 && PRNG.nextInt(6) == 0)
 		{
 			z = 240;
 			trafficMaxLocationX = mapX;
@@ -1467,9 +1479,7 @@ public class Micropolis
 		bb.put("POLICESTATION", new MapScanner(this, MapScanner.B.POLICESTATION));
 		bb.put("STADIUM_EMPTY", new MapScanner(this, MapScanner.B.STADIUM_EMPTY));
 		bb.put("STADIUM_FULL", new MapScanner(this, MapScanner.B.STADIUM_FULL));
-		System.out.println("@@@@@ tile behavior st");
 		bb.put("AMUSEMENTPARK", new MapScanner(this, MapScanner.B.AMUSEMENTPARK));
-		System.out.println("@@@@@ tile behavior ed");
 		bb.put("AIRPORT", new MapScanner(this, MapScanner.B.AIRPORT));
 		bb.put("SEAPORT", new MapScanner(this, MapScanner.B.SEAPORT));
 
@@ -1494,11 +1504,15 @@ public class Micropolis
 		if (behaviorStr == null) {
 			return; //nothing to do
 		}
-		System.out.println("@@@@@mapScanTile");
 		System.out.println(behaviorStr);
 		TileBehavior b = tileBehaviors.get(behaviorStr);
 		if (b != null) {
 			b.processTile(xpos, ypos);
+			// get position of last seen amusement park for facility accident location
+			if (behaviorStr == "AMUSEMENTPARK"){
+				amuseX = xpos;
+				amuseY = ypos;
+			}
 		}
 		else {
 			throw new Error("Unknown behavior: "+behaviorStr);
@@ -2264,6 +2278,15 @@ public class Micropolis
 		}
 	}
 
+	void makeFacilityacc(){
+		// decrease land value
+		int lval = getLandValue(amuseX,amuseY);
+		landValueMem[amuseY/2][amuseX/2] = lval/2;
+		// decrease pop value
+		int pval = popDensity[amuseY/2][amuseX/2];
+		popDensity[amuseY/2][amuseX/2] = pval/2;
+	}
+	
 	void setFire()
 	{
 		int x = PRNG.nextInt(getWidth());

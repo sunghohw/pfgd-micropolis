@@ -288,10 +288,17 @@ class MapScanner extends TileBehavior
 		boolean powerOn = checkZonePower();
 		city.amusementparkCount++;
 		zonePlop(AMUSEMENTPARK);
+		// regenerate the tiles that make up amusement park
 		if ((city.cityTime % 8) == 0) {
 			repairZone(AMUSEMENTPARK, 4);
-			
 		}
+		if (PRNG.nextInt(2) == 0)
+		{
+			System.out.println("pop increase + traffic increase");
+			adjustROG(8);
+			makeTraffic(ZoneType.COMMERCIAL);
+			
+		}	
 	}
 	void doAirport()
 	{

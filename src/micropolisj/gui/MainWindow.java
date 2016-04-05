@@ -1175,18 +1175,14 @@ public class MainWindow extends JFrame
 		CityLocation loc = drawingArea.getCityLocation(ev.getX(), ev.getY());
 		int x = loc.x;
 		int y = loc.y;
-		System.out.println("tool down1");
 		if (currentTool == MicropolisTool.QUERY) {
-			System.out.println("tool down2");
 			doQueryTool(x, y);
 			this.toolStroke = null;
 		}
 		else {
-			System.out.println("tool down3");
 			this.toolStroke = currentTool.beginStroke(engine, x, y);
 			previewTool();
 		}
-		System.out.println("tool down4");
 		this.lastX = x;
 		this.lastY = y;
 	}
