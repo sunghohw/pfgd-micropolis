@@ -2285,6 +2285,7 @@ public class Micropolis
 		// decrease pop value
 		int pval = popDensity[amuseY/2][amuseX/2];
 		popDensity[amuseY/2][amuseX/2] = pval/2;
+		sendMessage(MicropolisMessage.FACILITY_ACCIDENT);
 	}
 	
 	void setFire()

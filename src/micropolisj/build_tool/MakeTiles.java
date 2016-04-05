@@ -48,7 +48,6 @@ public class MakeTiles
 			
 			//Copy over the recipe file to the output dir
 			File outputRecipeFile = new File(outputDir, recipeFile.getName());
-			System.out.println("Copying "+recipeFile.toPath()+" to "+outputRecipeFile.toPath());
 			Files.copy(recipeFile.toPath(), outputRecipeFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 		}
 		else {
@@ -120,13 +119,11 @@ public class MakeTiles
 		default	: suffix = "";
 		}
 		File outputFile = new File(outputDir, "tiles"+suffix+".png");
-		System.out.println("Generating tiles array: "+outputFile);
 		ImageIO.write(buf, "png", outputFile);
 
 		// output an index of all tile names and their offset into
 		// the composed tile array
 		File indexFile = new File(outputDir, "tiles"+suffix+".idx");
-		System.out.println("Generating tiles index: "+indexFile);
 		writeIndexFile(tileNames, indexFile);
 	}
 
@@ -246,7 +243,6 @@ public class MakeTiles
 
 		File inkscapeBin = findInkscape();
 
-		System.out.println("Generating raster image: "+pngFile);
 		if (pngFile.exists()) {
 			pngFile.delete();
 		}
